@@ -22,7 +22,7 @@
   -->
         <div style="display: flex; height: 100vh">
             <div style="flex: 0 0 30%; padding: 10px">
-                <form id="treeData">
+                <form id="treeData"><br><br><br>
                     <label for="node">Nodes:</label>
                     <textarea
                         id="node"
@@ -53,7 +53,7 @@ A->C</textarea
                         value="directed"
                         checked
                     />
-                    <label for="directed">Directed</label>
+                    <label for="directed" style="margin-left: 10;">Directed</label>
                     <input
                         type="radio"
                         id="undirected"
@@ -64,14 +64,16 @@ A->C</textarea
                     <br /><br />
 
                     <input
-                        style="position: fixed; left: 10%"
+                        style="position: fixed; left: 5%"
                         type="submit"
                         value="Submit"
                     />
                 </form>
             </div>
-
             <div style="flex: 1; padding: 10px">
+                <!--Write Binary Tree Visualiser (center)-->
+                <h2 style="position: relative">
+                    🌲Binary Tree Visualiser🌲</h2>
                 <div id="mynetwork"></div>
                 <button style="position: relative; left: 40%" onclick="reset()">
                     Reset
@@ -83,8 +85,8 @@ A->C</textarea
                 .getElementById("treeData")
                 .addEventListener("submit", function (e) {
                     e.preventDefault();
-                    var node = document.getElementById("node").value;
-                    var edgesValue = document.getElementById("edges").value;
+                    var node = document.getElementById("node").value.trim();
+                    var edgesValue = document.getElementById("edges").value.trim();
                     var nodes = node.split(",");
                     var edges = edgesValue.split("\n");
                     var isDirected = document.querySelector(

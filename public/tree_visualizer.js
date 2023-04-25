@@ -26,12 +26,12 @@ function get_processed_data(nodes, edges, isDirectedEdges) {
 
     var i;
     for (i = 0; i < nodes.length; i++) {
-        nodesArray.push({ id: i + 1, label: nodes[i] });
+        nodesArray.push({ id: i + 1, label: nodes[i].trim() });
     }
     for (i = 0; i < edges.length; i++) {
         var edge = edges[i].split("->");
-        var from = nodesDict[edge[0]];
-        var to = nodesDict[edge[1]];
+        var from = nodesDict[edge[0].trim()];
+        var to = nodesDict[edge[1].trim()];
         edgesArray.push({ from: from, to: to, arrows: isDirected ? "to" : "none" });
     }
     var data = {
