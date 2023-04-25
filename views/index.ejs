@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Binary Tree Visualization</title>
+        <script
+            type="text/javascript"
+            src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+        ></script>
+        <script type="text/javascript" src="/tree_visualizer.js"></script>
+        <style>
+            #mynetwork {
+                position: relative;
+                width: 800px;
+                height: 500px;
+                border: 1px solid lightgray;
+            }
+        </style>
+    </head>
+    <body>
+        <!--
+    Split the page vertically by 30:70 (first 30 percent is for the form, the rest is for the network)
+  -->
+        <div style="display: flex; height: 100vh">
+            <div style="flex: 0 0 30%; padding: 10px">
+                <form id="treeData">
+                    <label for="node">Nodes:</label>
+                    <textarea
+                        id="node"
+                        name="node"
+                        rows="2"
+                        cols="30"
+                        placeholder="Add Node separated by comma(`,`)"
+                    ></textarea>
+                    <br /><br />
+                    <label for="edge">Edges:</label>
+                    <textarea
+                        id="edges"
+                        name="edges"
+                        rows="10"
+                        cols="30"
+                        placeholder="Add directed Edge (A->B)(no spaces)"
+                    ></textarea>
+                    <br /><br />
+                    <input
+                        type="radio"
+                        id="directed"
+                        name="graph"
+                        value="directed"
+                        checked
+                    />
+                    <label for="directed">Directed</label>
+                    <input
+                        type="radio"
+                        id="undirected"
+                        name="graph"
+                        value="undirected"
+                    />
+                    <label for="undirected">Undirected</label>
+                    <br /><br />
+
+                    <input
+                        style="position: fixed; left: 10%"
+                        type="submit"
+                        value="Submit"
+                    />
+                </form>
+            </div>
+
+            <div style="flex: 1; padding: 10px">
+                <div id="mynetwork"></div>
+                <button style="position: relative; left: 40%" onclick="reset()">
+                    Reset
+                </button>
+            </div>
+        </div>
+        <script>
+            var treeData = document
+                .getElementById("treeData")
+                .addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    var node = document.getElementById("node").value;
+                    var edgesValue = document.getElementById("edges").value;
+                    var nodes = node.split(",");
+                    var edges = edgesValue.split("\n");
+                    var isDirected = document.querySelector(
+                        'input[name="graph"]:checked'
+                    ).value;
+
+                    var data = get_processed_data(nodes, edges);
+
+                    const options = {
+                        layout: {
+                            hierarchical: {
+                                direction: "UD",
+                                sortMethod: isDirected,
+                                levelSeparation: 100,
+                                nodeSpacing: 150,
+                            },
+                        },
+                    };
+                    const container = document.getElementById("mynetwork");
+                    const network = new vis.Network(container, data, options);
+                });
+        </script>
+    </body>
+</html>
