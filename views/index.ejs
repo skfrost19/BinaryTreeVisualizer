@@ -30,7 +30,9 @@
                         rows="2"
                         cols="30"
                         placeholder="Add Node separated by comma(`,`)"
-                    ></textarea>
+                    >
+A,B,C</textarea
+                    >
                     <br /><br />
                     <label for="edge">Edges:</label>
                     <textarea
@@ -39,7 +41,10 @@
                         rows="10"
                         cols="30"
                         placeholder="Add directed Edge (A->B)(no spaces)"
-                    ></textarea>
+                    >
+A->B
+A->C</textarea
+                    >
                     <br /><br />
                     <input
                         type="radio"
@@ -92,7 +97,7 @@
                         layout: {
                             hierarchical: {
                                 direction: "UD",
-                                sortMethod: 'directed',
+                                sortMethod: "directed",
                                 levelSeparation: 100,
                                 nodeSpacing: 150,
                             },
