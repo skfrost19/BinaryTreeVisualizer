@@ -1,6 +1,6 @@
 # Binary Tree Visualiser 🌲
 
-### A simple binary tree visualiser made with express-js and vis-js.
+A simple binary tree visualiser made with express-js and vis-js.
 
 ## Installation
 
