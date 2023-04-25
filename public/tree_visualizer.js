@@ -6,7 +6,15 @@ function reset() {
     document.getElementById("mynetwork").innerHTML = "";
 }
 
-function get_processed_data(nodes, edges) {
+function get_processed_data(nodes, edges, isDirectedEdges) {
+
+    var isDirected;
+    if (isDirectedEdges === 'directed') {
+        isDirected = true;
+    } else {
+        isDirected = false;
+    }
+
     var nodesArray = [];
     var edgesArray = [];
 
@@ -22,7 +30,9 @@ function get_processed_data(nodes, edges) {
     }
     for (i = 0; i < edges.length; i++) {
         var edge = edges[i].split("->");
-        edgesArray.push({ from: nodesDict[edge[0]], to: nodesDict[edge[1]] });
+        var from = nodesDict[edge[0]];
+        var to = nodesDict[edge[1]];
+        edgesArray.push({ from: from, to: to, arrows: isDirected ? "to" : "none" });
     }
     var data = {
         nodes: nodesArray,

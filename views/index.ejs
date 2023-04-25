@@ -86,13 +86,13 @@
                         'input[name="graph"]:checked'
                     ).value;
 
-                    var data = get_processed_data(nodes, edges);
+                    var data = get_processed_data(nodes, edges, isDirected);
 
                     const options = {
                         layout: {
                             hierarchical: {
                                 direction: "UD",
-                                sortMethod: isDirected,
+                                sortMethod: 'directed',
                                 levelSeparation: 100,
                                 nodeSpacing: 150,
                             },
